@@ -1,4 +1,4 @@
-Role Name
+mysql_db
 =========
 
 This role installs MariaDB database
