@@ -1,0 +1,28 @@
+---
+# tasks file for mysql_db
+    - name: Install and Configure Database
+      apt: 
+        name: '{{ item }}' 
+        state: present
+        update_cache: yes
+      with_items:
+       - mariadb-server 
+       - mariadb-client
+    - name: Start Database Service
+      service: 
+        name: mariadb
+        pattern: /usr/sbin/mariadbd
+        state: started
+        enabled: yes 
+    - name: Create database 
+      mysql_db:
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        name: '{{ db_name }}'
+        state: present
+    - name: Create database user
+      mysql_user:
+        login_unix_socket: /var/run/mysqld/mysqld.sock
+        name: '{{ db_user }}'
+        password: '{{ db_password }}'
+        priv: '*.*:ALL'
+        state: present
