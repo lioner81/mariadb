@@ -2,6 +2,7 @@ Role Name
 =========
 
 This role installs MariaDB database
+
 NOTE: It is a example role from https://www.udemy.com/course/learn-ansible-advanced/
 
 Requirements
